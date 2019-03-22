@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Faiz Dialer</string>
+    <string name="edit_message">6268318739</string>
+    <string name="button_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
