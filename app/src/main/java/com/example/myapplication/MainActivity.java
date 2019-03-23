@@ -24,9 +24,18 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
+
+//THINGS TO FIX
+//FIX THE TEXT FIELD NAMES
+//  PREVIEW AND EDIT TEXT ARE CONFUSING
+//REFACTOR!
+//MOVE THE MEDIA PLAYER OUT, MAYBE INSTANTIATE A GLOBAL ONE
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -50,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
         numberOfPresses = 0;
         NumberToCall = "";
 
+        if (savedInstanceState != null)
+        {
+            NumberToCall = savedInstanceState.getString("numberToCall");
+            TextView preview = findViewById(R.id.Preview);
+            TextView editText = findViewById(R.id.editText);
+            preview.setText(savedInstanceState.getString("preview"));
+            editText.setText(savedInstanceState.getString("autoComplete"));
+            numberOfPresses = savedInstanceState.getInt("keyPresses");
+        }
 
         AccessContact();
 
@@ -74,6 +92,22 @@ public class MainActivity extends AppCompatActivity {
         //textView.setAdapter(adapter);
 
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("numberToCall", NumberToCall);
+        TextView preview = findViewById(R.id.Preview);
+        TextView editText = findViewById(R.id.editText);
+        outState.putString("preview", preview.getText().toString());
+        outState.putString("autoComplete",editText.getText().toString());
+        outState.putInt("keyPresses", numberOfPresses);
+
+
+        super.onSaveInstanceState(outState);
+
+    }
+
 
     public String CheckForMatch(String comp)
     {
@@ -146,6 +180,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Zero:
                 NumberToCall += "0";
                 phoneNumber.setText((NumberToCall));
+                break;
+            case R.id.Pound:
+                NumberToCall += "#";
+                phoneNumber.setText(NumberToCall);
+                break;
+            case R.id.Star:
+                NumberToCall += "*";
+                phoneNumber.setText(NumberToCall);
                 break;
 
 
