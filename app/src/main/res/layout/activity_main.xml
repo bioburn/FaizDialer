@@ -37,17 +37,17 @@
         app:layout_constraintStart_toEndOf="@+id/editText" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Enter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/aldrich"
         android:onClick="PlayCompleteSound"
         android:text="Enter"
         android:textSize="24sp"
-        android:fontFamily="@font/aldrich"
-        app:layout_constraintBottom_toTopOf="@+id/One"
+        app:layout_constraintBottom_toTopOf="@+id/Two"
         app:layout_constraintEnd_toStartOf="@+id/Delete"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -87,17 +87,17 @@
     <Button
         android:id="@+id/Seven"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/black"
+        android:fontFamily="@font/aldrich"
         android:onClick="sendMessage"
         android:text="7"
-        android:fontFamily="@font/aldrich"
-        android:textSize="24sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/background_light"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/Zero"
         app:layout_constraintEnd_toStartOf="@+id/Two"
         app:layout_constraintStart_toStartOf="parent" />
@@ -244,7 +244,7 @@
         android:onClick="sendMessage"
         android:text="Del"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/Three"
+        app:layout_constraintBottom_toTopOf="@+id/Two"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
@@ -276,7 +276,7 @@
         android:gravity="center"
         android:textSize="24sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/Enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

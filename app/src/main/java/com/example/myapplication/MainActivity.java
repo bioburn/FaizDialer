@@ -41,7 +41,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     int numberOfPresses;
-    String[] list = {"Test"};
 
     static final int PICK_CONTACT = 1;
     String NumberToCall;
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     int[] soundCollection = {R.raw.faiz1, R.raw.faiz2, R.raw.faiz3};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setVolumeControlStream(AudioManager.STREAM_RING);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         numberOfPresses = 0;
@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
     public String CheckForMatch(String comp)
     {
+        //Next time :
+        //return array of matches
         for (String contact: StoreContacts
              ) {
             if(contact.toLowerCase().contains(comp.toLowerCase()))
@@ -268,6 +270,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     NumberToCall = "";
                     editText.setText(NumberToCall);
+                    TextView preview = findViewById(R.id.editText);
+                    preview.setText("HENSHIN");
                     return;
                 }
             Intent i = new Intent(Intent.ACTION_CALL);
