@@ -26,10 +26,12 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.myapplication.dummy.DummyContent;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFragment.OnFragmentInteractionListener {
+public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFragment.OnFragmentInteractionListener, ContactFragment.OnListFragmentInteractionListener {
 
 
     final private int REQUEST_MULTIPLE_PERMISSIONS = 124;
@@ -118,6 +120,11 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
     }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -168,6 +175,10 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             if(position == 0)
             {
                 return FaizDialerFragment.newInstance(StoreContacts,"");
+            }
+            else if(position == 1)
+            {
+                return ContactFragment.newInstance(1, StoreContacts);
             }
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).

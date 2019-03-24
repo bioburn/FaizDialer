@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SwipeActivityTest"
-            android:label="@string/title_activity_swipe_test"
+            android:label="Faiz Dialer"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
