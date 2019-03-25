@@ -74,6 +74,7 @@ public class ContactFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyContactRecyclerViewAdapter(mContacts, mListener));
+
         }
         return view;
     }
@@ -108,6 +109,6 @@ public class ContactFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(CharSequence item);
     }
 }

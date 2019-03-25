@@ -9,11 +9,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -55,6 +57,12 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
 
     private OnFragmentInteractionListener mListener;
 
+
+    private int viewPagerId;
+    private ViewPager viewPager;
+
+    String thePreview = "";
+
     public FaizDialerFragment() {
         // Required empty public constructor
     }
@@ -68,11 +76,12 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
      * @return A new instance of fragment FaizDialerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FaizDialerFragment newInstance(ArrayList<String> param1, String param2) {
+    public static FaizDialerFragment newInstance(ArrayList<String> param1, String param2, int id) {
         FaizDialerFragment fragment = new FaizDialerFragment();
         Bundle args = new Bundle();
         args.putStringArrayList(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putInt("viewPagerID", id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -82,7 +91,12 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             StoreContacts = getArguments().getStringArrayList(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            thePreview = getArguments().getString(ARG_PARAM2,"");
+
+            viewPagerId = getArguments().getInt("viewPagerId");
+            viewPager = (ViewPager) getActivity().findViewById(R.id.viewPager);
+
+            //thePreview = getArguments().getString("viewPagerID", "");
         }
     }
 
@@ -136,11 +150,23 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
             }
         });
 
+        layout.findViewById(R.id.imageView3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setPage();
+            }
+        });
+
 
         numberOfPresses = 0;
         NumberToCall = "";
 
-
+        if(!thePreview.equals("")){
+            TextView editText = layout.findViewById(R.id.editText);
+            TextView preview = layout.findViewById(R.id.Preview);
+            editText.setText(thePreview);
+            preview.setText(thePreview);
+        }
 
         return layout;
     }
@@ -196,6 +222,11 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         void onFragmentInteraction(Uri uri);
     }
 
+    public void setPage()
+    {
+
+        viewPager.setCurrentItem(1);
+    }
 
     public void setNumber( )
     {

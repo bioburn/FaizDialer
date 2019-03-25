@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +32,8 @@ import android.widget.TextView;
 import com.example.myapplication.dummy.DummyContent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFragment.OnFragmentInteractionListener, ContactFragment.OnListFragmentInteractionListener {
@@ -36,6 +41,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
     final private int REQUEST_MULTIPLE_PERMISSIONS = 124;
 
+    public String contactNumber = "";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -65,7 +71,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
@@ -121,8 +127,14 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(CharSequence item) {
+        Log.d("From activity",item.toString());
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager.setCurrentItem(0);
 
+
+        contactNumber = item.toString();
+        viewPager.getAdapter().notifyDataSetChanged();
     }
 
     /**
@@ -164,7 +176,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -174,10 +186,13 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         public Fragment getItem(int position) {
             if(position == 0)
             {
-                return FaizDialerFragment.newInstance(StoreContacts,"");
+                Log.d("Fragment getItem", contactNumber);
+                return FaizDialerFragment.newInstance(StoreContacts, contactNumber, R.id.viewPager);
             }
             else if(position == 1)
             {
+                Collections.sort(StoreContacts);
+                //should do this on start ^
                 return ContactFragment.newInstance(1, StoreContacts);
             }
             // getItem is called to instantiate the fragment for the given page.
@@ -186,9 +201,22 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         }
 
         @Override
+        public int getItemPosition(Object fragItem) {
+            int position = 0;
+            if (fragItem instanceof FaizDialerFragment) {
+                position = 0;
+            } else if (fragItem instanceof  ContactFragment) {
+                position = 1;
+            }
+            Log.d("getitempos","Hi");
+            Log.d("getItempos",contactNumber);
+            return POSITION_NONE;
+        }
+
+        @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
     }
 

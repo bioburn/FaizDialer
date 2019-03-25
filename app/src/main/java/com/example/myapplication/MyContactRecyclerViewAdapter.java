@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.ContactFragment.OnListFragmentInteractionListener;
 import com.example.myapplication.dummy.DummyContent.DummyItem;
@@ -38,16 +40,20 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        holder.mIdView.setText(Integer.toString(position));
+        //holder.mIdView.setText(Integer.toString(position));
         holder.mContentView.setText(contacts.get(position));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("from onclick", "Test");
+
+
+
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mContentView.getText());
                 }
             }
         });
