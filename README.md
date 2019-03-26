@@ -34,12 +34,29 @@ All static text should be defined in the Strings resource xml and referenced in 
 
 <br/>
 <br/>
+All extra parameter names should be defined as static strings at the top of the class instead of string literals
+
+<br/>
+<br/>
+Perhaps the arraylist of contacts should be staticly defined in the activity only and accessible by the fragments instead of keeping a local copy in the fragment as well.
+
+<br/>
+<br/>
+I have a habit of making EVERYTHING public. Should make methods and variables private to prevent unintended behavior by design
+
+<br/>
+<br/>
 The main activity for this dialer was originally a single main activity (MainActivity.java)
 I converted this activity into a fragment in order to have swiping tabs (view pager)
 <br/>
 <br/>
 Communication between fragments could have been handled better and more properly.
 The contacts recycler view does feature the implemented listener interface in the main activity, which updates the dialer fragment with the selected contact number by passing it the value received from the contacts fragment.
+However, calling notifydatasetchanged() from addcontact was cheating. It works because there was only one expected behavior from design.
+
+For multiple behaviors, define an interface in the fragment and implement it in the activity. Trigger callback in fragment and activity will execute a specific behavior.
+<br/>
+**Update - defined interface listener method in addcontact, implemented method in activity, moved existing logic to implementation of listener
 
 
 <br/>
