@@ -10,6 +10,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.transition.Fade;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -80,7 +81,15 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         //Get the list of contacts
         AccessContact();
         StoreContacts = new ArrayList<>();
-        getContacts();
+        try
+        {
+            getContacts();
+        }
+        catch(Exception ex)
+        {
+
+        }
+
 
 
     }
@@ -264,6 +273,16 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
     private void AccessContact()
     {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 101);
+
+            return;
+        }
+
+
+        /*
         //This is overkill. Can request permission as done in FaizDialerFragment
         List<String> permissionsNeeded = new ArrayList<String>();
         final List<String> permissionsList = new ArrayList<String>();
@@ -289,7 +308,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
                     REQUEST_MULTIPLE_PERMISSIONS);
             return;
-        }
+        }*/
     }
 
 
