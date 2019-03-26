@@ -73,6 +73,12 @@ At the time of writing this readme, the ids of the views are suboptimal for huma
 <br/>
 Discovered permissions bugs. Fixed and app should always work if user gives permissions.
 
+<br/>
+<br/>
+Coming soon:
+<br/>
+Resources.txt - list of resources used
+
 <H1>Main Screen Tab 1</H1>
 
 <img src="https://github.com/bioburn/FaizDialer/blob/master/Main.png?raw=true" width="400" height="790">
