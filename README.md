@@ -5,15 +5,24 @@ Made this because my Android SDK is rusty.
 Makes sound effects from Kamen Rider Faiz
 
 <br/>
-This android application was hacked together to demonstrate 
+This android application was hacked together to demonstrate
+<br/>
 Activities
+<br/>
 Lifecycles
+<br/>
 constraint layouts
+<br/>
 View Pagers, ViewPagerAdapters
+<br/>
 Recycler Views, RecyclerViewAdapters
+<br/>
 Fragments
+<br/>
 Communicating between fragments
+<br/>
 Requesting runtime permissions
+<br/>
 Action Intents
 
 <br/>
