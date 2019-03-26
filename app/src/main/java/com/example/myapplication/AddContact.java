@@ -34,8 +34,7 @@ public class AddContact extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,16 +46,13 @@ public class AddContact extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     *
      * @return A new instance of fragment AddContact.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddContact newInstance(String param1, String param2) {
+    public static AddContact newInstance() {
         AddContact fragment = new AddContact();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,10 +60,7 @@ public class AddContact extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -101,7 +94,8 @@ public class AddContact extends Fragment {
             public void onClick(View v) {
                 ViewPager viewPager = getActivity().findViewById(R.id.viewPager);
                 viewPager.getAdapter().notifyDataSetChanged();
-
+                //When refresh button is clicked, let main activity know. Behavior is taken care of in swipeactivity
+                //sets focus on tab 2 and recreates the contacts list updated
             }
         });
 
@@ -139,6 +133,7 @@ public class AddContact extends Fragment {
         }
     }
 
+    //This was just for fun, don't really need to do anything with this listener
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {

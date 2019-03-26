@@ -10,23 +10,15 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Debug;
 import android.provider.ContactsContract;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         {
             NumberToCall = savedInstanceState.getString("numberToCall");
             TextView preview = findViewById(R.id.Preview);
-            TextView editText = findViewById(R.id.editText);
+            TextView editText = findViewById(R.id.Suggestion);
             preview.setText(savedInstanceState.getString("preview"));
             editText.setText(savedInstanceState.getString("autoComplete"));
             numberOfPresses = savedInstanceState.getInt("keyPresses");
@@ -98,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("numberToCall", NumberToCall);
         TextView preview = findViewById(R.id.Preview);
-        TextView editText = findViewById(R.id.editText);
+        TextView editText = findViewById(R.id.Suggestion);
         outState.putString("preview", preview.getText().toString());
         outState.putString("autoComplete",editText.getText().toString());
         outState.putInt("keyPresses", numberOfPresses);
@@ -127,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void setNumber( View view)
     {
         TextView numberToCall = (TextView) findViewById(R.id.Preview);
-        TextView numberAutoComplete = (TextView) findViewById(R.id.editText);
+        TextView numberAutoComplete = (TextView) findViewById(R.id.Suggestion);
         numberToCall.setText(numberAutoComplete.getText());
     }
 
@@ -195,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        TextView editText = (TextView) findViewById(R.id.editText);
+        TextView editText = (TextView) findViewById(R.id.Suggestion);
         editText.setText(CheckForMatch(NumberToCall));
         if(NumberToCall.length()<=0)
             editText.setText("");
@@ -270,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     NumberToCall = "";
                     editText.setText(NumberToCall);
-                    TextView preview = findViewById(R.id.editText);
+                    TextView preview = findViewById(R.id.Suggestion);
                     preview.setText("HENSHIN");
                     return;
                 }

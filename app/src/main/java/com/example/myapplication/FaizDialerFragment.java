@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,13 +51,10 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
 
 
     // TODO: Rename and change types of parameters
-    private ArrayList<String> mParam1;
-    private String mParam2;
+
 
     private OnFragmentInteractionListener mListener;
 
-
-    private int viewPagerId;
     private ViewPager viewPager;
 
     String thePreview = "";
@@ -95,10 +89,8 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
             StoreContacts = getArguments().getStringArrayList(ARG_PARAM1);
             thePreview = getArguments().getString(ARG_PARAM2,"");
 
-            viewPagerId = getArguments().getInt("viewPagerId");
             viewPager = (ViewPager) getActivity().findViewById(R.id.viewPager);
 
-            //thePreview = getArguments().getString("viewPagerID", "");
         }
     }
 
@@ -113,9 +105,9 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         {
             NumberToCall = savedInstanceState.getString("numberToCall");
             TextView preview = layout.findViewById(R.id.Preview);
-            TextView editText = layout.findViewById(R.id.editText);
+            TextView suggestion = layout.findViewById(R.id.Suggestion);
             preview.setText(savedInstanceState.getString("preview"));
-            editText.setText(savedInstanceState.getString("autoComplete"));
+            suggestion.setText(savedInstanceState.getString("autoComplete"));
             numberOfPresses = savedInstanceState.getInt("keyPresses");
 
 
@@ -160,7 +152,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         });
         delete.setOnClickListener(this);
 
-        layout.findViewById(R.id.editText).setOnClickListener(new View.OnClickListener() {
+        layout.findViewById(R.id.Suggestion).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setNumber();
@@ -179,9 +171,9 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         NumberToCall = "";
 
         if(!thePreview.equals("")){
-            TextView editText = layout.findViewById(R.id.editText);
+            TextView suggestion = layout.findViewById(R.id.Suggestion);
             TextView preview = layout.findViewById(R.id.Preview);
-            editText.setText(thePreview);
+            suggestion.setText(thePreview);
             preview.setText(thePreview);
         }
 
@@ -192,9 +184,9 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
     public void onSaveInstanceState(Bundle outState) {
         outState.putString("numberToCall", NumberToCall);
         TextView preview = getActivity().findViewById(R.id.Preview);
-        TextView editText = getActivity().findViewById(R.id.editText);
+        TextView suggestion = getActivity().findViewById(R.id.Suggestion);
         outState.putString("preview", preview.getText().toString());
-        outState.putString("autoComplete",editText.getText().toString());
+        outState.putString("autoComplete",suggestion.getText().toString());
         outState.putInt("keyPresses", numberOfPresses);
         thePreview = preview.getText().toString();
 
@@ -232,7 +224,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         switch (v.getId())
         {
             default:
-                sendMessage(v);
+                appendNumber(v);
                 Log.d("Hello","Test");
                 break;
         }
@@ -264,11 +256,11 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
     {
 
         TextView numberToCall = (TextView) getView().findViewById(R.id.Preview);
-        TextView numberAutoComplete = (TextView) getView().findViewById(R.id.editText);
+        TextView numberAutoComplete = (TextView) getView().findViewById(R.id.Suggestion);
         numberToCall.setText(numberAutoComplete.getText());
     }
 
-    public void sendMessage(View view){
+    public void appendNumber(View view){
 
         TextView phoneNumber = (TextView)getView().findViewById(R.id.Preview);
         int button = view.getId();
@@ -331,11 +323,11 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
 
 
         }
-        TextView editText = (TextView) getView().findViewById(R.id.editText);
-        editText.setText(CheckForMatch(NumberToCall));
+        TextView suggestion = (TextView) getView().findViewById(R.id.Suggestion);
+        suggestion.setText(CheckForMatch(NumberToCall));
         SwipeActivityTest.contactNumber = NumberToCall;
         if(NumberToCall.length()<=0)
-            editText.setText("");
+            suggestion.setText("");
 
         //SoundPoolPlayer soundPoolPlayer = new SoundPoolPlayer(this);
         Log.d("test","Hello");
@@ -356,40 +348,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         if(numberOfPresses > 2){
             numberOfPresses = 0;
         }
-        /*
-        try
-        {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
 
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 101);
-
-                return;
-            }
-
-
-
-
-
-
-            Intent i = new Intent(Intent.ACTION_CALL);
-            i.setData(Uri.parse("tel:6268318739"));
-            startActivity(i);
-
-        }
-        catch(Exception ex)
-        {
-
-            Log.d("test",ex.toString());
-        }
-        //Intent intent = new Intent(this, DisplayMessageActivity.class);
-        //EditText editText = (EditText) findViewById(R.id.editText);
-        //String message = editText.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        //startActivity((intent));
-
-
-    */
     }
 
     public String CheckForMatch(String comp)
@@ -451,18 +410,18 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
 
                 return;
             }
-            TextView editText = (TextView) getView().findViewById(R.id.Preview);
-            Log.d("number" , editText.getText().toString());
-            if(editText.getText().toString().equals("555"))
+            TextView preview = (TextView) getView().findViewById(R.id.Preview);
+            Log.d("number" , preview.getText().toString());
+            if(preview.getText().toString().equals("555"))
             {
                 NumberToCall = "";
-                editText.setText(NumberToCall);
-                TextView preview = getView().findViewById(R.id.editText);
-                preview.setText("HENSHIN");
+                preview.setText(NumberToCall);
+                TextView suggestion = getView().findViewById(R.id.Suggestion);
+                suggestion.setText("HENSHIN");
                 return;
             }
             Intent i = new Intent(Intent.ACTION_CALL);
-            i.setData(Uri.parse("tel:" + editText.getText().toString()));
+            i.setData(Uri.parse("tel:" + preview.getText().toString()));
             startActivity(i);
 
         }

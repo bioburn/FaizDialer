@@ -77,9 +77,8 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
 
 
-
+        //Get the list of contacts
         AccessContact();
-
         StoreContacts = new ArrayList<>();
         getContacts();
 
@@ -133,16 +132,22 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
     @Override
     public void onListFragmentInteraction(CharSequence item) {
+        //Listens to recycler view item getting selected
+        //creates a new fragment of the dialer tab
+        //does not need to be a transaction as dialers don't really need a stack of states
+
         Log.d("From activity",item.toString());
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setCurrentItem(0);
 
-
+        //This is kind of cheating.
         contactNumber = item.toString();
 
         viewPager.getAdapter().notifyDataSetChanged();
     }
 
+
+    //This was created by android studio, unused
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -198,17 +203,21 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             else if(position == 1)
             {
                 Collections.sort(StoreContacts);
-                //should do this on start ^
+                //should do this on start maybe ^
                 return ContactFragment.newInstance(1, StoreContacts);
             }
             else if(position == 2)
             {
-                return AddContact.newInstance("","");
+                return AddContact.newInstance();
             }
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1);
         }
+
+        //This is called when a fragment calls NotifyDataSetChanged()
+        //fragment that called it is passed as object parameter
+        //check if instanceof a fragment type and act accordingly.
 
         @Override
         public int getItemPosition(Object fragItem) {
@@ -220,12 +229,12 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             }
             else if (fragItem instanceof  AddContact)
             {
+                //When addcontact calls notifydatasetchanged, it was because someone pressed the refresh button
                 position = 2;
                 StoreContacts.clear();
                 getContacts();
                 ViewPager viewPager = findViewById(R.id.viewPager);
                 viewPager.setCurrentItem(1);
-
             }
 
             Log.d("getitempos","Hi");
@@ -247,6 +256,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
     private void AccessContact()
     {
+        //This is overkill. Can request permission as done in FaizDialerFragment
         List<String> permissionsNeeded = new ArrayList<String>();
         final List<String> permissionsList = new ArrayList<String>();
         if (!addPermission(permissionsList, Manifest.permission.READ_CONTACTS))
