@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.transition.Fade;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -36,12 +37,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFragment.OnFragmentInteractionListener, ContactFragment.OnListFragmentInteractionListener {
+public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFragment.OnFragmentInteractionListener, ContactFragment.OnListFragmentInteractionListener, AddContact.OnFragmentInteractionListener {
 
 
     final private int REQUEST_MULTIPLE_PERMISSIONS = 124;
 
-    public String contactNumber = "";
+    public static String contactNumber = "";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -80,6 +81,12 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         AccessContact();
 
         StoreContacts = new ArrayList<>();
+        getContacts();
+
+
+    }
+
+    public void getContacts(){
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
         if(cursor!=null && cursor.getCount() > 0)
@@ -94,10 +101,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             }
             cursor.close();
         }
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,6 +127,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+        Log.d("onfragmentinteraction",uri.toString());
 
     }
 
@@ -134,6 +139,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
 
 
         contactNumber = item.toString();
+
         viewPager.getAdapter().notifyDataSetChanged();
     }
 
@@ -195,6 +201,10 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
                 //should do this on start ^
                 return ContactFragment.newInstance(1, StoreContacts);
             }
+            else if(position == 2)
+            {
+                return AddContact.newInstance("","");
+            }
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1);
@@ -208,6 +218,16 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             } else if (fragItem instanceof  ContactFragment) {
                 position = 1;
             }
+            else if (fragItem instanceof  AddContact)
+            {
+                position = 2;
+                StoreContacts.clear();
+                getContacts();
+                ViewPager viewPager = findViewById(R.id.viewPager);
+                viewPager.setCurrentItem(1);
+
+            }
+
             Log.d("getitempos","Hi");
             Log.d("getItempos",contactNumber);
             return POSITION_NONE;
@@ -216,7 +236,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
         }
     }
 

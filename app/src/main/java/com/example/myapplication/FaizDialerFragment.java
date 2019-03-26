@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -106,6 +108,21 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_faiz_dialer, container, false);
 
+
+        if (savedInstanceState != null)
+        {
+            NumberToCall = savedInstanceState.getString("numberToCall");
+            TextView preview = layout.findViewById(R.id.Preview);
+            TextView editText = layout.findViewById(R.id.editText);
+            preview.setText(savedInstanceState.getString("preview"));
+            editText.setText(savedInstanceState.getString("autoComplete"));
+            numberOfPresses = savedInstanceState.getInt("keyPresses");
+
+
+        }
+
+
+
         //set onclicks for EVERY BUTTON
         Button one = layout.findViewById(R.id.One);
         Button two = layout.findViewById(R.id.Two);
@@ -170,6 +187,21 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
 
         return layout;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("numberToCall", NumberToCall);
+        TextView preview = getActivity().findViewById(R.id.Preview);
+        TextView editText = getActivity().findViewById(R.id.editText);
+        outState.putString("preview", preview.getText().toString());
+        outState.putString("autoComplete",editText.getText().toString());
+        outState.putInt("keyPresses", numberOfPresses);
+        thePreview = preview.getText().toString();
+
+
+        super.onSaveInstanceState(outState);
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -301,6 +333,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         }
         TextView editText = (TextView) getView().findViewById(R.id.editText);
         editText.setText(CheckForMatch(NumberToCall));
+        SwipeActivityTest.contactNumber = NumberToCall;
         if(NumberToCall.length()<=0)
             editText.setText("");
 
@@ -311,6 +344,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
 
 
         MediaPlayer mp = MediaPlayer.create(getContext(),soundCollection[numberOfPresses > 2 ? 2 : numberOfPresses < 0 ? 0 : numberOfPresses]);
+
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
