@@ -6,7 +6,7 @@ Makes sound effects from Kamen Rider Faiz
 
 
 Main Screen Tab 1
-![](https://github.com/bioburn/FaizDialer/blob/master/Main.png?raw=trues=200)
+![](https://github.com/bioburn/FaizDialer/blob/master/Main.png?raw=true&s=200)
 
 
 
