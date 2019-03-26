@@ -28,18 +28,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="sendMessage"
-            android:text="@string/button_send"
-            android:visibility="gone"
-            app:layout_constraintBaseline_toBaselineOf="@+id/Suggestion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/Suggestion" />
-
-        <Button
             android:id="@+id/Enter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

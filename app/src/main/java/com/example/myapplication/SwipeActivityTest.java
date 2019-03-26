@@ -146,6 +146,17 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         viewPager.getAdapter().notifyDataSetChanged();
     }
 
+    @Override
+    public void onRefreshClicked(String string) {
+        Log.d("Swipe 151", string);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        StoreContacts.clear();
+        getContacts();
+
+        viewPager.getAdapter().notifyDataSetChanged();
+        viewPager.setCurrentItem(1);
+    }
+
 
     //This was created by android studio, unused
     /**
@@ -197,7 +208,7 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
         public Fragment getItem(int position) {
             if(position == 0)
             {
-                Log.d("Fragment getItem", contactNumber);
+                Log.d("Activity 200", contactNumber);
                 return FaizDialerFragment.newInstance(StoreContacts, contactNumber, R.id.viewPager);
             }
             else if(position == 1)
@@ -231,13 +242,10 @@ public class SwipeActivityTest extends AppCompatActivity implements FaizDialerFr
             {
                 //When addcontact calls notifydatasetchanged, it was because someone pressed the refresh button
                 position = 2;
-                StoreContacts.clear();
-                getContacts();
-                ViewPager viewPager = findViewById(R.id.viewPager);
-                viewPager.setCurrentItem(1);
+
             }
 
-            Log.d("getitempos","Hi");
+            Log.d("getitempos","Line240 SwipeActivity");
             Log.d("getItempos",contactNumber);
             return POSITION_NONE;
         }

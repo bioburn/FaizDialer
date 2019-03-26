@@ -4,13 +4,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,8 +90,9 @@ public class AddContact extends Fragment {
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ViewPager viewPager = getActivity().findViewById(R.id.viewPager);
-                viewPager.getAdapter().notifyDataSetChanged();
+                onButtonPressed();
+                //ViewPager viewPager = getActivity().findViewById(R.id.viewPager);
+                //viewPager.getAdapter().notifyDataSetChanged();
                 //When refresh button is clicked, let main activity know. Behavior is taken care of in swipeactivity
                 //sets focus on tab 2 and recreates the contacts list updated
             }
@@ -159,9 +158,9 @@ public class AddContact extends Fragment {
 
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed() {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onRefreshClicked("Hello");
         }
     }
 
@@ -194,6 +193,6 @@ public class AddContact extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onRefreshClicked(String string);
     }
 }

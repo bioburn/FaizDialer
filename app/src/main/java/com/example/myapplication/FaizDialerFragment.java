@@ -225,7 +225,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         {
             default:
                 appendNumber(v);
-                Log.d("Hello","Test");
+                Log.d("onClick","FaizDialer line 228");
                 break;
         }
 
@@ -330,7 +330,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
             suggestion.setText("");
 
         //SoundPoolPlayer soundPoolPlayer = new SoundPoolPlayer(this);
-        Log.d("test","Hello");
+        Log.d("appendNumber","Line 333");
         //soundPoolPlayer.playShortResource(R.raw.faiz1);
 
 
@@ -369,7 +369,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
     public void PlayCompleteSound(View view)
     {
         TextView editText = (TextView) getView().findViewById(R.id.Preview);
-        Log.d("number" , editText.getText().toString());
+        Log.d("PlayCompleteSound 372" , editText.getText().toString());
         if(editText.getText().toString().equals(""))
         {
             MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.exceedcharge);
@@ -411,7 +411,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
                 return;
             }
             TextView preview = (TextView) getView().findViewById(R.id.Preview);
-            Log.d("number" , preview.getText().toString());
+            Log.d("makeCall 414" , preview.getText().toString());
             if(preview.getText().toString().equals("555"))
             {
                 NumberToCall = "";
@@ -428,7 +428,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         catch(Exception ex)
         {
 
-            Log.d("test",ex.toString());
+            Log.d("exception 431",ex.toString());
         }
     }
 

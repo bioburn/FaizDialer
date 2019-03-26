@@ -46,7 +46,7 @@ public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContact
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("from onclick", "Test");
+                Log.d("from onclick", "Line49 RecyclerViewAdapter");
 
 
 
