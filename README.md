@@ -41,7 +41,7 @@ Transactions and adding to the backstack were unnecessary for this application
 <br/>
 At the time of writing this readme, the ids of the views are suboptimal for human readability and will need to be changed. Everywhere.
 
-Main Screen Tab 1
+<H1>Main Screen Tab 1</H1>
 
 <img src="https://github.com/bioburn/FaizDialer/blob/master/Main.png?raw=true" width="400" height="790">
 
