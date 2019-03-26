@@ -66,6 +66,12 @@ Transactions and adding to the backstack were unnecessary for this application
 <br/>
 <br/>
 At the time of writing this readme, the ids of the views are suboptimal for human readability and will need to be changed. Everywhere.
+<br/>
+**Update - renamed views to be more accurate, better readability
+
+<br/>
+<br/>
+Discovered permissions bugs. Fixed and app should always work if user gives permissions.
 
 <H1>Main Screen Tab 1</H1>
 
