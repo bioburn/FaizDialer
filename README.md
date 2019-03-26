@@ -55,6 +55,7 @@ The contacts recycler view does feature the implemented listener interface in th
 However, calling notifydatasetchanged() from addcontact was cheating. It works because there was only one expected behavior from design.
 
 For multiple behaviors, define an interface in the fragment and implement it in the activity. Trigger callback in fragment and activity will execute a specific behavior.
+<br/>
 **Update - defined interface listener method in addcontact, implemented method in activity, moved existing logic to implementation of listener
 
 
