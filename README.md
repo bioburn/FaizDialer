@@ -59,7 +59,7 @@ For multiple behaviors, define an interface in the fragment and implement it in 
 **Update - defined interface listener method in addcontact, implemented method in activity, moved existing logic to implementation of listener
 
 <br/>
-<H2>Note to self</H2>In the implementation of listener,  use fragment manager transactions to update the view
+<H4>Note to self</H4>In the implementation of listener,  use fragment manager transactions to update the view
 Can also get reference to the fragment and call a method defined within it
 https://stackoverflow.com/questions/10903077/calling-a-fragment-method-from-a-parent-activity
 
