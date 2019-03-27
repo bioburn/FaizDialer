@@ -62,6 +62,9 @@ For multiple behaviors, define an interface in the fragment and implement it in 
 <H4>Note to self</H4>In the implementation of listener,  use fragment manager transactions to update the view
 Can also get reference to the fragment and call a method defined within it
 https://stackoverflow.com/questions/10903077/calling-a-fragment-method-from-a-parent-activity
+<br/>
+But, this only works if you have a fragment view in your layout. This does not happen with a viewpager.
+https://learnpainless.com/android/how-to-get-fragment-from-viewpager-android
 
 
 
