@@ -90,6 +90,12 @@ Coming soon:
 <br/>
 Resources.txt - list of resources used
 
+<br/>
+<br/>
+<H5>Bugs</H5>
+Cannot reproduce - clicking on the imageview on the main tab crashed the app.
+
+
 <H1>Main Screen Tab 1</H1>
 
 <img src="https://github.com/bioburn/FaizDialer/blob/master/Main.png?raw=true" width="400" height="790">
