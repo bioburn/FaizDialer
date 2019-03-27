@@ -66,7 +66,7 @@ https://stackoverflow.com/questions/10903077/calling-a-fragment-method-from-a-pa
 But, this only works if you have a fragment view in your layout. This does not happen with a viewpager.
 https://learnpainless.com/android/how-to-get-fragment-from-viewpager-android
 <br/>
-Also, fragments in a viewpager are paused if they are not the neighbor of the currently displayed fragment
+Also, fragments in a viewpager are paused/destroyed if they are not the neighbor of the currently displayed fragment
 
 
 
