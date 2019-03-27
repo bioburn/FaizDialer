@@ -88,6 +88,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         if (getArguments() != null) {
             StoreContacts = getArguments().getStringArrayList(ARG_PARAM1);
             thePreview = getArguments().getString(ARG_PARAM2,"");
+            NumberToCall = thePreview;
 
             viewPager = (ViewPager) getActivity().findViewById(R.id.viewPager);
 
@@ -100,7 +101,8 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_faiz_dialer, container, false);
 
-
+        numberOfPresses = 0;
+        NumberToCall = "";
         if (savedInstanceState != null)
         {
             NumberToCall = savedInstanceState.getString("numberToCall");
@@ -167,8 +169,7 @@ public class FaizDialerFragment extends Fragment implements  View.OnClickListene
         });
 
 
-        numberOfPresses = 0;
-        NumberToCall = "";
+
 
         if(!thePreview.equals("")){
             TextView suggestion = layout.findViewById(R.id.Suggestion);
