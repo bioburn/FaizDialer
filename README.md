@@ -58,6 +58,9 @@ For multiple behaviors, define an interface in the fragment and implement it in 
 <br/>
 **Update - defined interface listener method in addcontact, implemented method in activity, moved existing logic to implementation of listener
 
+<br/>
+Note to self, in the implementation of listener,  use fragment manager transactions to update the view
+
 
 <br/>
 <br/>
