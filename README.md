@@ -2,7 +2,7 @@
 ![](https://github.com/bioburn/FaizDialer/blob/master/app/src/main/res/drawable/smartbrain.png?raw=true)
 Made this because my Android Development is rusty.
 
-Makes sound effects from Kamen Rider Faiz
+Makes Faiz gear phone sound effects from Kamen Rider 555
 
 <br/>
 This android application was hacked together to demonstrate
@@ -58,6 +58,17 @@ For multiple behaviors, define an interface in the fragment and implement it in 
 <br/>
 **Update - defined interface listener method in addcontact, implemented method in activity, moved existing logic to implementation of listener
 
+<br/>
+<H4>Note to self</H4>In the implementation of listener,  use fragment manager transactions to update the view
+Can also get reference to the fragment and call a method defined within it
+https://stackoverflow.com/questions/10903077/calling-a-fragment-method-from-a-parent-activity
+<br/>
+But, this only works if you have a fragment view in your layout. This does not happen with a viewpager.
+https://learnpainless.com/android/how-to-get-fragment-from-viewpager-android
+<br/>
+Also, fragments in a viewpager are paused/destroyed if they are not the neighbor of the currently displayed fragment
+
+
 
 <br/>
 <br/>
@@ -66,6 +77,18 @@ Transactions and adding to the backstack were unnecessary for this application
 <br/>
 <br/>
 At the time of writing this readme, the ids of the views are suboptimal for human readability and will need to be changed. Everywhere.
+<br/>
+**Update - renamed views to be more accurate, better readability
+
+<br/>
+<br/>
+Discovered permissions bugs. Fixed and app should always work if user gives permissions.
+
+<br/>
+<br/>
+Coming soon:
+<br/>
+Resources.txt - list of resources used
 
 <H1>Main Screen Tab 1</H1>
 
