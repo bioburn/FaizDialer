@@ -2,7 +2,7 @@
 ![](https://github.com/bioburn/FaizDialer/blob/master/app/src/main/res/drawable/smartbrain.png?raw=true)
 Made this because my Android Development is rusty.
 
-Makes sound effects from Kamen Rider Faiz
+Makes Faiz gear phone sound effects from Kamen Rider 555
 
 <br/>
 This android application was hacked together to demonstrate
