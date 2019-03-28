@@ -89,6 +89,9 @@ Discovered permissions bugs. Fixed and app should always work if user gives perm
 Coming soon:
 <br/>
 Resources.txt - list of resources used
+Fragmentception - fragments inside fragments, so we can have more views on the contacts page
+Tab bar - Probably not, a top bar would kind of ruin the asthetics of the faiz themed dialer
+Intro screen - a faiz themed image that appears on app load
 
 <br/>
 <br/>
